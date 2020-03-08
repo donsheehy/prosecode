@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="XXX",
+    name="prosecode",
     version="0.1.0",
     author="Donald R. Sheehy",
     author_email="don.r.sheehy@gmail.com",
-    description="XXX",
+    description="Literate programming in Python from markdown to LaTeX.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="XXX",
+    url="https://donsheehy.github.io/prosecode/",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

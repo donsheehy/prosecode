@@ -4,8 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+prosecode = {editable = true,path = "."}
+sphinx = "*"
+sphinx-rtd-theme = "*"
 
 [packages]
+markdown = "*"
+ds2 = "*"
+pygments = "*"
 
 [requires]
 python_version = "3.7"

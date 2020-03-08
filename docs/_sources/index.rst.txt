@@ -1,5 +1,5 @@
-Welcome to XXX's documentation!
-===============================
+PROSECODE
+=========
 
 .. toctree::
    :maxdepth: 2
