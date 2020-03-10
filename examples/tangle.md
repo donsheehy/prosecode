@@ -30,7 +30,7 @@ This should go in the subfolder
 """
 
 def foo():
-    pass
+    return 100
 
 ```
 
@@ -44,4 +44,5 @@ This is the second part.
 """
 
 print(A_STRING)
+print('Just sayin.')
 ```

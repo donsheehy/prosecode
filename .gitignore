@@ -6,7 +6,7 @@
 *.fdb_latexmk
 *.aux
 *.pdf
-examples/src/
+xexamples/src/
 
 # Mac stuff
 .DS_Store

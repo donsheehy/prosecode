@@ -13,6 +13,7 @@ markdown = "*"
 ds2 = "*"
 pygments = "*"
 python-markdown-math = "*"
+click = "*"
 
 [requires]
 python_version = "3.7"

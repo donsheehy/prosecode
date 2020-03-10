@@ -19,4 +19,14 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    include_package_data=True,
+    install_requires =[
+        'Markdown',
+        'Click',
+        'Pygments',
+    ],
+    entry_points='''
+        [console_scripts]
+        prosecode=prosecode.cli:cli
+    ''',
 )

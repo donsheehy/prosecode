@@ -1,8 +1,8 @@
 from html.parser import HTMLParser
-from prosecode.tangle import tangle
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import LatexFormatter
+
 
 h_to_l = {
     'h1': '\\chapter{',
@@ -95,18 +95,6 @@ class HTMLtoLaTeX(HTMLParser):
 
         self.latex.append(data)
 
-
-def weave(srcdir, mdfilename, outfilename = None):
-    if outfilename is None:
-        outfilename = mdfilename.replace('.md', '.tex')
-    html = tangle(srcdir, mdfilename)
-    latex = []
-    parser = HTMLtoLaTeX(latex)
-    parser.feed(html)
-    with open(outfilename, 'w') as outfile:
-        for line in latex:
-            outfile.write(line)
-
 def _latexescape(txt):
     txt = txt.replace('_', '\\_')
     txt = txt.replace('&', '\&')
@@ -119,9 +107,3 @@ def _unescape(txt):
     txt = txt.replace('&gt;', '>')
     txt = txt.replace('&quot;', '"')
     return txt
-
-
-if __name__ == '__main__':
-    SRC_DIR = './examples/src/'
-    MD_FILE = './examples/tables.md'
-    weave(SRC_DIR, MD_FILE)
