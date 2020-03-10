@@ -39,6 +39,7 @@ class Chunk:
             self.id = False
             self.tagclass = None
             self.cont_id = None
+            self.error_expected = False
         else:
             self.cmd = keyvalue(options, 'cmd')
             self.hide = keyvalue(options, 'hide')
@@ -46,6 +47,7 @@ class Chunk:
             self.id = keyvalue(options, 'id')
             self.tagclass = keyvalue(options, 'class')
             self.cont_id = keyvalue(options, 'continue')
+            self.error_expected = keyvalue(options, 'error_expected')
             # TODO: implement element, stdin, args
 
         if self.id == False:

@@ -1,60 +1,64 @@
 \section{Tangle This!}
 
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{This is the first part of the file.}
+\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
 
-\begin{verbatim}"""
-This is the first part of the file.
-"""
-
-A_STRING = 'Hello, World!'
-\end{verbatim}
+\PY{n}{A\PYZus{}STRING} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hello, World!}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
 
 
+\subsection{Some math to process}
+
+
+Inline math $x_i = 100$.
+
+
+Some display math:
+
+
+\[
+  f_i = f_{i-1} + f_{i-1}.
+\]
 
 \subsection{How about some headers to break it up!}
 
 
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Executed, but not tangled.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
 
+\begin{Verbatim}
+Executed, but not tangled.
 
-\begin{verbatim}print("Executed, but not tangled.")
-\end{verbatim}
+\end{Verbatim}
 
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{This should go in the subfolder}
+\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
 
-\begin{verbatim}Executed, but not tangled.
-
-\end{verbatim}
-
-
-
-\begin{verbatim}"""
-This should go in the subfolder
-"""
-
-def foo():
-    pass
-
-\end{verbatim}
-
+\PY{k}{def} \PY{n+nf}{foo}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{k}{pass}
+\end{Verbatim}
 
 
 \subsection{More stuff}
 
 
-
-
 The following is more stuff.
 
 
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{This is the second part.}
+\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
 
-\begin{verbatim}"""
-This is the second part.
-"""
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{A\PYZus{}STRING}\PY{p}{)}
+\end{Verbatim}
 
-print(A_STRING)
-\end{verbatim}
+\begin{Verbatim}
+Hello, World!
 
-
-\begin{verbatim}Hello, World!
-
-\end{verbatim}
-
-
+\end{Verbatim}

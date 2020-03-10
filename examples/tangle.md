@@ -8,6 +8,16 @@ This is the first part of the file.
 A_STRING = 'Hello, World!'
 ```
 
+### Some math to process
+
+Inline math $x_i = 100$.
+
+Some display math:
+
+\[
+  f_i = f_{i-1} + f_{i-1}.
+\]
+
 ### How about some headers to break it up!
 
 ```python {cmd}

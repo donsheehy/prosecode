@@ -1,11 +1,21 @@
 import markdown
 from prosecode.chunk_extension import CodeChunkExtension
+from prosecode.displaymath_extension import DisplayMathExtension
 
 def tangle(srcdir, mdfilename):
     mdfile = open(mdfilename, 'r')
     md = mdfile.read()
-    codechunks = CodeChunkExtension()
-    html = markdown.markdown(md, extensions=[codechunks])
+    codechunks = CodeChunkExtension(execute = False)
+    # Parse it once to tangle out the codechunks
+    markdown.markdown(md, extensions=[codechunks])
+
+
+    displaymath = DisplayMathExtension()
+    codechunks = CodeChunkExtension(execute = True)
+    html = markdown.markdown(md, extensions=[codechunks,
+                                             displaymath,
+                                             'tables',
+                                             ])
 
     chunks = [c for c in codechunks.chunks.values() if c.keep()]
 
@@ -23,8 +33,9 @@ def tangle(srcdir, mdfilename):
 
 if __name__ == '__main__':
     SRC_DIR = './examples/src/'
-    MD_FILE = './examples/tangle.md'
+    MD_FILE = './examples/tables.md'
+    OUT_FILE = MD_FILE.replace('md', 'html')
 
     html = tangle(SRC_DIR, MD_FILE)
-    with open('./examples/small_tangle.html', 'w') as htmlfile:
+    with open(OUT_FILE, 'w') as htmlfile:
         htmlfile.write(html)

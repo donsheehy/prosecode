@@ -5,15 +5,17 @@ import re
 
 class CodeChunkExtension(Extension):
 
-    def __init__(self):
+    def __init__(self, execute = False):
         super().__init__()
+        self.execute = execute
         self.chunks = {}
 
     def extendMarkdown(self, md):
-        """ Add FencedBlockPreprocessor to the Markdown instance. """
+        """ Add CodeChunkPreprocessor to the Markdown instance. """
         md.registerExtension(self)
 
-        md.preprocessors.register(CodeChunkPreprocessor(md, self.chunks), 'code_chunk', 26)
+        preprocessor = CodeChunkPreprocessor(md, self.chunks, self.execute)
+        md.preprocessors.register(preprocessor, 'code_chunk', 26)
 
 class CodeChunkPreprocessor(Preprocessor):
     CODE_CHUNK_RE = re.compile(r'''
@@ -24,10 +26,12 @@ class CodeChunkPreprocessor(Preprocessor):
 (?<=\n)(?P=fence)[ ]*$''', re.MULTILINE | re.DOTALL | re.VERBOSE)
     CODE_WRAP = '<pre><code%s>%s</code></pre>'
     LANG_TAG = ' class="%s"'
+    OUTPUT_CLASS = ' class="verbatim"'
 
-    def __init__(self, md, chunks):
+    def __init__(self, md, chunks, execute):
         super().__init__(md)
         self.chunks = chunks
+        self.execute = execute
 
     def run(self, lines):
         """ Match and store Fenced Code Blocks in the HtmlStash. """
@@ -41,6 +45,8 @@ class CodeChunkPreprocessor(Preprocessor):
                 break
 
             lang = m.group('lang')
+            if lang is None:
+                lang = 'verbatim'
             code = m.group('code')
             chunkoptions = m.group('chunkoptions')
             langhtml = self.LANG_TAG % lang if lang else ''
@@ -48,19 +54,28 @@ class CodeChunkPreprocessor(Preprocessor):
             codehtml = self.CODE_WRAP % (langhtml,
                                         self._escape(code))
 
-            placeholder = self.md.htmlStash.store(codehtml)
 
             chunk = Chunk(lang, chunkoptions, code)
             chunk.setcontinue(self.chunks.get(chunk.cont_id))
             self.chunks[chunk.id] = chunk
 
+            if chunk.hide:
+                placeholder = ''
+            else:
+                placeholder = self.md.htmlStash.store(codehtml)
+
             output = None
-            if chunk.cmd:
+            if self.execute and chunk.cmd:
                 stdout, stderr = chunk.execute()
                 if len(stdout) + len(stderr) > 0:
-                    chunkoutput = self.CODE_WRAP % ('',
-                        self._escape(stdout + '\n' + stderr))
-                    output = self.md.htmlStash.store(chunkoutput)
+                    if chunk.error_expected:
+                        rawoutput = self._escape(stdout + '\n' + stderr)
+                    else:
+                        rawoutput = self._escape(stdout)
+                    chunkoutput = self.CODE_WRAP % (self.OUTPUT_CLASS,
+                                                    rawoutput)
+                    if chunk.output != 'none':
+                        output = self.md.htmlStash.store(chunkoutput)
 
             if output:
                 text = '{}\n{}\n{}\n{}'.format(text[:m.start()],

@@ -1,0 +1,103 @@
+\chapter{Here is a nice little table}
+
+\begin{tabular}{c c c c}
+
+\hline
+
+
+Operation Name &
+Code &
+Cost &
+\\
+\hline
+
+
+
+Add a new item &
+\texttt{A.add(newitem)} &
+$1$ &
+\\
+
+Delete an item &
+\texttt{A.delete(item)} &
+$1$ &
+\\
+
+Union &
+\texttt{A | B} &
+$n_A + n_B$ &
+\\
+
+Intersection &
+\texttt{A \& B} &
+$\min{n_A, n_B}$ &
+\\
+
+Set differences &
+\texttt{A - B} &
+$n_A$ &
+\\
+
+Symmetric Difference &
+\texttt{A \wedge B} &
+$n_A + n_B$ &
+\\
+\hline
+\end{tabular}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{markdown}
+
+\PY{k}{def} \PY{n+nf}{escape}\PY{p}{(}\PY{n}{txt}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} basic html escaping \PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n}{txt} \PY{o}{=} \PY{n}{txt}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZam{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZam{}amp;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{txt} \PY{o}{=} \PY{n}{txt}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZam{}lt;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{txt} \PY{o}{=} \PY{n}{txt}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZam{}gt;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{txt} \PY{o}{=} \PY{n}{txt}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZam{}quot;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{k}{return} \PY{n}{txt}
+
+\PY{n}{tbl} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+s2}{First Header  | Second Header}
+\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} | \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{l+s+s2}{Content Cell  | Content Cell}
+\PY{l+s+s2}{Content Cell  | Content Cell}
+\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+
+\PY{n}{html} \PY{o}{=} \PY{n}{markdown}\PY{o}{.}\PY{n}{markdown}\PY{p}{(}\PY{n}{tbl}\PY{p}{,} \PY{n}{extensions}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tables}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{escape}\PY{p}{(}\PY{n}{html}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}
+<table>
+<thead>
+<tr>
+<th>First Header</th>
+<th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+
+\end{Verbatim}
+
+
+The goal is to transform this into the following.
+
+\texttt{\begin{tabular}{c c}
+\hline
+First Header \& Second Header \\
+\hline
+Content Cell \& Content Cell \\
+Content Cell \& Content Cell \\
+\hline
+\end{tabular}
+}

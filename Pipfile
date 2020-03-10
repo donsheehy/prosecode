@@ -12,6 +12,7 @@ sphinx-rtd-theme = "*"
 markdown = "*"
 ds2 = "*"
 pygments = "*"
+python-markdown-math = "*"
 
 [requires]
 python_version = "3.7"

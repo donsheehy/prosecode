@@ -10,9 +10,26 @@ h_to_l = {
     'h3': '\\subsection{',
     'h4': '\\subsubsection{',
     'h5': '\\paragraph{',
+    'code.verbatim': '\\begin{Verbatim}\n',
+    'code.python': '',
+    'code': '\\texttt{',
     'pre': '',
-    'code': '',
     'p': '\n',
+    'strong': '\\textbf{',
+    'em': '\\emph{',
+    'u': '\\underline{',
+    'br': '\\\\',
+    'ol': '\\begin{enumerate}\n',
+    'ul': '\\begin{itemize}\n',
+    'li': '\\item ',
+    'blockquote': '\\begin{quote}',
+    'img': '\\includegraphics[width=\\textwidth]{',
+    'table': '\\begin{tabular}{c c c c}\n',
+    'thead': '\\hline\n',
+    'th': '',
+    'tr': '',
+    'td': '',
+    'tbody': '',
 }
 
 close_h_to_l = {
@@ -21,9 +38,26 @@ close_h_to_l = {
     'h3': '}\n',
     'h4': '}\n',
     'h5': '}\n',
+    'code.verbatim': '\n\\end{Verbatim}',
+    'code.python': '',
+    'code': '}',
     'pre': '',
-    'code': '',
     'p': '\n',
+    'strong': '}',
+    'em': '}',
+    'u': '}',
+    'br': '',
+    'img': '',
+    'ol': '\\end{enumerate}',
+    'ul': '\\end{itemize}',
+    'li': '\n',
+    'blockquote': '\\end{quote}',
+    'table': '\\end{tabular}',
+    'thead': '\\hline\n',
+    'th': ' & ',
+    'tr': '\\\\',
+    'td': ' &' ,
+    'tbody': '\\hline',
 }
 
 class HTMLtoLaTeX(HTMLParser):
@@ -33,30 +67,61 @@ class HTMLtoLaTeX(HTMLParser):
         self.mystack = []
 
     def handle_starttag(self, tag, attrs):
+        attrs = {k : v for (k, v) in attrs}
+        if 'class' in attrs:
+            tag = tag + '.' + attrs['class']
         self.latex.append(h_to_l[tag])
+        if tag == 'img':
+            # print("image:", tag, attrs)
+            self.latex.append(attrs['src'])
+            self.latex.append('}')
         self.mystack.append(tag)
 
     def handle_endtag(self, tag):
+        if self.mystack[-1] in ['code.verbatim', 'code.python']:
+            tag = self.mystack[-1]
         self.latex.append(close_h_to_l[tag])
         self.mystack.pop()
 
     def handle_data(self, data):
-        if self.mystack and self.mystack[-1] == 'code':
-            data = highlight(data, PythonLexer(), LatexFormatter())
+        if self.mystack:
+            tag = self.mystack[-1]
+            if tag == 'code.python':
+                data = highlight(data, PythonLexer(), LatexFormatter())
+            elif tag == 'code':
+                data = _latexescape(data)
+            elif tag == 'code.verbatim':
+                data = _unescape(data)
+
         self.latex.append(data)
 
 
-def weave(srcdir, mdfilename, destdir = ''):
+def weave(srcdir, mdfilename, outfilename = None):
+    if outfilename is None:
+        outfilename = mdfilename.replace('.md', '.tex')
     html = tangle(srcdir, mdfilename)
     latex = []
     parser = HTMLtoLaTeX(latex)
     parser.feed(html)
-    texfilename = mdfilename.replace('.md', '.tex')
-    with open(texfilename, 'w') as outfile:
+    with open(outfilename, 'w') as outfile:
         for line in latex:
             outfile.write(line)
 
+def _latexescape(txt):
+    txt = txt.replace('_', '\\_')
+    txt = txt.replace('&', '\&')
+    txt = txt.replace('^', '\\ensuremath{\\wedge}')
+    return txt
+
+def _unescape(txt):
+    txt = txt.replace('&amp;', '&')
+    txt = txt.replace('&lt;', '<')
+    txt = txt.replace('&gt;', '>')
+    txt = txt.replace('&quot;', '"')
+    return txt
+
+
 if __name__ == '__main__':
     SRC_DIR = './examples/src/'
-    MD_FILE = './examples/tangle.md'
+    MD_FILE = './examples/tables.md'
     weave(SRC_DIR, MD_FILE)
