@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>The Problem &mdash; XXX 0.0.1 documentation</title>
+  <title>The Problem &mdash; prosecode 0.1.0 documentation</title>
   
 
   
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> XXX
+            <a href="index.html" class="icon icon-home"> prosecode
           
 
           
@@ -84,8 +84,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefileusage.html">Using prosecode with make</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Tables</a></li>
 </ul>
 
             
@@ -100,7 +102,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">XXX</a>
+          <a href="index.html">prosecode</a>
         
       </nav>
 
@@ -152,6 +154,17 @@
             
   <div class="section" id="the-problem">
 <h1>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h1>
+<p>Code in books is full of bugs.
+This is a natural consequence of the way books and code are developed differently.
+It is not common to write code in a book that can be executed in place.
+The idea of having a single source document that includes both the source code and a prose description is called <em>Literate Programming</em>.</p>
+<p>The <cite>prosecode</cite> library was written in response to a desire to have the following features:</p>
+<ul class="simple">
+<li><p>The ability to integrate executable python code into markdown files so that the output could be inserted inline.  (This is possible using the Markdown-Preview-Enhanced plugin for Atom or VS-Code).</p></li>
+<li><p>The ability to pull that code out into separate libraries for testing and distribution.</p></li>
+<li><p>The ability to provide fine-grained control over LaTeX generated from the markdown files (with executed code inline).</p></li>
+</ul>
+<p>The main test case for the library was the generation of the book: <strong>A First Course in Data Structures in Python</strong>.  This open source textbook is available here &lt;<a class="reference external" href="https://donsheehy.github.io/datastructures">https://donsheehy.github.io/datastructures</a>&gt;`_</p>
 </div>
 
 
@@ -174,7 +187,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, XXX
+        &copy; Copyright 2020, Donald R. Sheehy
 
     </p>
   </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Command Line Interface &mdash; XXX 0.0.1 documentation</title>
+  <title>Command Line Interface &mdash; prosecode 0.1.0 documentation</title>
   
 
   
@@ -35,7 +35,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Examples" href="examples.html" /> 
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -49,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> XXX
+            <a href="index.html" class="icon icon-home"> prosecode
           
 
           
@@ -83,8 +84,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="problem.html">The Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Command Line Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prosecode-tangle">prosecode tangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prosecode-weave">prosecode weave</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefileusage.html">Using prosecode with make</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Tables</a></li>
 </ul>
 
             
@@ -99,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">XXX</a>
+          <a href="index.html">prosecode</a>
         
       </nav>
 
@@ -151,7 +158,55 @@
             
   <div class="section" id="command-line-interface">
 <h1>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h1>
-<p>There is currently no command line interface.</p>
+<p>The command line interface provides the ability to tangle and weave markdown files.</p>
+<div class="section" id="prosecode-tangle">
+<h2>prosecode tangle<a class="headerlink" href="#prosecode-tangle" title="Permalink to this headline">¶</a></h2>
+<p>Process the markdown file <cite>mdfile</cite>, extracting all code.
+The code is placed in the directory given in the option <cite>–srcdir</cite>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>prosecode tangle <span class="o">[</span>OPTIONS<span class="o">]</span> MDFILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-prosecode-tangle-srcdir">
+<code class="sig-name descname">--srcdir</code><code class="sig-prename descclassname"> &lt;srcdir&gt;</code><a class="headerlink" href="#cmdoption-prosecode-tangle-srcdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where to put the generated source code.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-prosecode-tangle-arg-mdfile">
+<code class="sig-name descname">MDFILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-prosecode-tangle-arg-mdfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="prosecode-weave">
+<h2>prosecode weave<a class="headerlink" href="#prosecode-weave" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>prosecode weave <span class="o">[</span>OPTIONS<span class="o">]</span> MDFILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-prosecode-weave-execute">
+<code class="sig-name descname">--execute</code><code class="sig-prename descclassname"> &lt;execute&gt;</code><a class="headerlink" href="#cmdoption-prosecode-weave-execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should the code chunks be executed?</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-prosecode-weave-outfile">
+<code class="sig-name descname">--outfile</code><code class="sig-prename descclassname"> &lt;outfile&gt;</code><a class="headerlink" href="#cmdoption-prosecode-weave-outfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>The file to save to.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-prosecode-weave-arg-mdfile">
+<code class="sig-name descname">MDFILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-prosecode-weave-arg-mdfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -162,8 +217,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -172,7 +229,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, XXX
+        &copy; Copyright 2020, Donald R. Sheehy
 
     </p>
   </div>

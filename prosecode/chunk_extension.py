@@ -34,61 +34,55 @@ class CodeChunkPreprocessor(Preprocessor):
         self.execute = execute
 
     def run(self, lines):
-        """ Match and store Fenced Code Blocks in the HtmlStash. """
+        """ Match code chunks and store them in the HtmlStash. """
         text = "\n".join(lines)
-        """
-        This loop should be replaced this with `re.finditer`
-        """
         while True:
             m = self.CODE_CHUNK_RE.search(text)
-            if not m:
-                break
+            if not m: break # Break if there is no match.
 
+            # Extract lang, code, and chunkoptions from the match.
             lang = m.group('lang')
             if lang is None:
                 lang = 'verbatim'
             code = m.group('code')
             chunkoptions = m.group('chunkoptions')
-            langhtml = self.LANG_TAG % lang if lang else ''
 
-            codehtml = self.CODE_WRAP % (langhtml,
-                                        self._escape(code))
-
-
+            # Create the chunk, register is predecessor and store it.
             chunk = Chunk(lang, chunkoptions, code)
             chunk.setcontinue(self.chunks.get(chunk.cont_id))
             self.chunks[chunk.id] = chunk
 
+            # If it's a chunk we want to see, stash it.
             if chunk.hide:
                 placeholder = ''
             else:
+                codehtml = self._codehtml(lang, code)
                 placeholder = self.md.htmlStash.store(codehtml)
 
-            output = None
-            if self.execute and chunk.cmd:
+            output = ''
+            if self.execute and chunk.cmd and chunk.output != 'none':
                 stdout, stderr = chunk.execute()
                 if len(stdout) + len(stderr) > 0:
                     if chunk.error_expected:
                         rawoutput = self._escape(stdout + '\n' + stderr)
                     else:
                         rawoutput = self._escape(stdout)
-                    chunkoutput = self.CODE_WRAP % (self.OUTPUT_CLASS,
-                                                    rawoutput)
-                    if chunk.output != 'none':
-                        output = self.md.htmlStash.store(chunkoutput)
+                    chunkoutput = self._codehtml('verbatim', rawoutput)
+                    output = self.md.htmlStash.store(chunkoutput)
 
-            if output:
-                text = '{}\n{}\n{}\n{}'.format(text[:m.start()],
-                                           placeholder,
-                                           output,
-                                           text[m.end():])
-            else:
-                text = '{}\n{}\n{}'.format(text[:m.start()],
+            text = '{}\n{}\n{}\n{}'.format(text[:m.start()],
                                        placeholder,
+                                       output,
                                        text[m.end():])
 
         return text.split("\n")
 
+    def _codehtml(self, lang, code):
+        langhtml = self.LANG_TAG % lang if lang else ''
+
+        codehtml = self.CODE_WRAP % (langhtml,
+                                    self._escape(code))
+        return codehtml
     def _escape(self, txt):
         """ basic html escaping """
         txt = txt.replace('&', '&amp;')

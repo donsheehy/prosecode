@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PROSECODE &mdash; prosecode 0.1.0 documentation</title>
+  <title>Tables &mdash; prosecode 0.1.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The Problem" href="problem.html" /> 
+    <link rel="prev" title="Using prosecode with make" href="makefileusage.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -49,7 +49,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> prosecode
+            <a href="index.html" class="icon icon-home"> prosecode
           
 
           
@@ -80,13 +80,13 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="problem.html">The Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="makefileusage.html">Using prosecode with make</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tables.html">Tables</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tables</a></li>
 </ul>
 
             
@@ -101,7 +101,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">prosecode</a>
+          <a href="index.html">prosecode</a>
         
       </nav>
 
@@ -130,15 +130,15 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>PROSECODE</li>
+      <li>Tables</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/tables.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -151,42 +151,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="prosecode">
-<h1>PROSECODE<a class="headerlink" href="#prosecode" title="Permalink to this headline">¶</a></h1>
-<p>by Don Sheehy</p>
-<div class="section" id="the-vision">
-<h2>The Vision<a class="headerlink" href="#the-vision" title="Permalink to this headline">¶</a></h2>
-<p>The <cite>prosecode</cite> Python library was written to support a literate programming workflow.
-It allows one to take markdown files with fenced code blocks and execute the code in the blocks.
-Then, the code blocks are tangled out into separate files of pure source code.
-Moreover, the markdown files can be converted into high quality LaTeX.</p>
-<p>Not all of these features are currently implemented in <cite>prosecode</cite>.
-All of these features are implemented in one form or another by other tools.
-Cobbling these tools together resulted in lackluster results so I decided to write my own.</p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="problem.html">The Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.html#prosecode-tangle">prosecode tangle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.html#prosecode-weave">prosecode weave</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="makefileusage.html">Using prosecode with make</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tables.html">Tables</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
+  <div class="section" id="tables">
+<h1>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h1>
+<p>Currently markdown style tables are supported, but it’s a bit of a hack.
+Their conversion to LaTeX assumes they have only three columns.</p>
 </div>
 
 
@@ -197,8 +165,8 @@ Cobbling these tools together resulted in lackluster results so I decided to wri
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="problem.html" class="btn btn-neutral float-right" title="The Problem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+        <a href="makefileusage.html" class="btn btn-neutral float-left" title="Using prosecode with make" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -7,6 +7,7 @@ verify_ssl = true
 prosecode = {editable = true,path = "."}
 sphinx = "*"
 sphinx-rtd-theme = "*"
+sphinx-click = "*"
 
 [packages]
 markdown = "*"

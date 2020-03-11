@@ -37,6 +37,6 @@ def latexweave(mdfile, execute = True, outfilename = None):
 
 if __name__ == '__main__':
     SRC_DIR = './examples/src/'
-    MD_FILE = './examples/simple.md'
+    MD_FILE = './examples/tangle.md'
     html = latexweave(MD_FILE)
     # print(html)

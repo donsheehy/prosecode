@@ -11,9 +11,12 @@ def cli():
 @click.option('--srcdir', default = './',
                 help='Where to put the generated source code.')
 def tangle(mdfile, srcdir):
+    """
+    Process the markdown file `mdfile`, extracting all code.
+    The code is placed in the directory given in the option `--srcdir`.
+    """
     prosecode.tangle.tangle(mdfile, srcdir)
-    click.echo('Tangled the code in ' + mdfile + '.')
-    click.echo('Placed the code in ' + srcdir + '.')
+    click.echo('Tangled the code in ' + mdfile + ' to ' + srcdir + '.')
 
 @cli.command()
 @click.argument('mdfile')
@@ -22,5 +25,13 @@ def tangle(mdfile, srcdir):
 def weave(mdfile, execute, outfile):
     if outfile == False:
         outfile = mdfile.replace('.md', '.tex')
-    prosecode.weave.latexweave(mdfile, execute)
+    prosecode.weave.latexweave(mdfile, execute, outfile)
     click.echo('Wove the code.')
+
+@cli.command()
+@click.argument('mdfile')
+@click.option('--srcdir', default = './',
+                help='Where to put the generated source code.')
+def cleanup(mdfile, srcdir):
+    prosecode.tangle.cleanup(mdfile, srcdir)
+    click.echo('Finished cleaning.')

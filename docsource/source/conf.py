@@ -17,12 +17,12 @@ sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'XXX'
-copyright = '2019, XXX'
-author = 'XXX'
+project = 'prosecode'
+copyright = '2020, Donald R. Sheehy'
+author = 'Donald R. Sheehy'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -32,7 +32,8 @@ release = '0.0.1'
 # ones.
 extensions = [
 'sphinx.ext.autodoc',
-'sphinx.ext.napoleon'
+'sphinx.ext.napoleon',
+'sphinx_click.ext'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

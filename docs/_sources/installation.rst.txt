@@ -2,7 +2,8 @@
 Installation
 ============
 
-To get started, you will need python and pipenv installed.
-The repository ships with a Pipfile that can be used install all the required dependencies.
+Use the following to install the package.
 
-.. At some point this should just say "Run pip install thepackage".
+.. code-block::
+  
+  pip install prosecode
