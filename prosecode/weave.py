@@ -5,10 +5,6 @@ from prosecode.chunk_extension import CodeChunkExtension
 from prosecode.displaymath_extension import DisplayMathExtension
 
 def htmlweave(mdfile, execute = True):
-    # Do a first pass to generate the code.
-    #   This ensures the code exists to be imported.
-    # tangle(mdfile, srcdir)
-
     md = open(mdfile, 'r').read()
     displaymath = DisplayMathExtension()
     codechunks = CodeChunkExtension(execute = execute)
@@ -34,9 +30,3 @@ def latexweave(mdfile, execute = True, outfilename = None):
     with open(outfilename, 'w') as outfile:
         for line in latex:
             outfile.write(line)
-
-if __name__ == '__main__':
-    SRC_DIR = './examples/src/'
-    MD_FILE = './examples/tangle.md'
-    html = latexweave(MD_FILE)
-    # print(html)

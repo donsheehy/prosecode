@@ -8,12 +8,11 @@ prosecode = {editable = true,path = "."}
 sphinx = "*"
 sphinx-rtd-theme = "*"
 sphinx-click = "*"
+pyfakefs = "*"
 
 [packages]
 markdown = "*"
-ds2 = "*"
 pygments = "*"
-python-markdown-math = "*"
 click = "*"
 
 [requires]
