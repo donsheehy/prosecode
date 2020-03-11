@@ -1,21 +1,15 @@
-PROSECODE
+prosecode
 =========
 
 by Don Sheehy
 
-The Vision
-----------
-
 The `prosecode` Python library was written to support a literate programming workflow.
 It allows one to take markdown files with fenced code blocks and execute the code in the blocks.
 Then, the code blocks are tangled out into separate files of pure source code.
-Moreover, the markdown files can be converted into high quality LaTeX.
+Moreover, the markdown files are converted into LaTeX.
 
-Not all of these features are currently implemented in `prosecode`.
-All of these features are implemented in one form or another by other tools.
-Cobbling these tools together resulted in lackluster results so I decided to write my own.
-
-
+`prosecode` was written primarily as a way to build the book **A First Course on Data Structures in Python**.
+This open source textbook can be found at `<https://donsheehy.github.io/datastructures/>`_.
 
 .. toctree::
    :maxdepth: 2
@@ -24,9 +18,10 @@ Cobbling these tools together resulted in lackluster results so I decided to wri
    problem
    installation
    cli
-   examples
+   latex
    makefileusage
    tables
+   examples
 
 
 

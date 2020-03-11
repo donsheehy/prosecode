@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PROSECODE &mdash; prosecode 0.1.0 documentation</title>
+  <title>prosecode &mdash; prosecode 0.1.0 documentation</title>
   
 
   
@@ -84,9 +84,10 @@
 <li class="toctree-l1"><a class="reference internal" href="problem.html">The Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="latex.html">Building the LaTeX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="makefileusage.html">Using prosecode with make</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tables.html">Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 </ul>
 
             
@@ -132,7 +133,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>PROSECODE</li>
+      <li>prosecode</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -152,17 +153,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="prosecode">
-<h1>PROSECODE<a class="headerlink" href="#prosecode" title="Permalink to this headline">¶</a></h1>
+<h1>prosecode<a class="headerlink" href="#prosecode" title="Permalink to this headline">¶</a></h1>
 <p>by Don Sheehy</p>
-<div class="section" id="the-vision">
-<h2>The Vision<a class="headerlink" href="#the-vision" title="Permalink to this headline">¶</a></h2>
 <p>The <cite>prosecode</cite> Python library was written to support a literate programming workflow.
 It allows one to take markdown files with fenced code blocks and execute the code in the blocks.
 Then, the code blocks are tangled out into separate files of pure source code.
-Moreover, the markdown files can be converted into high quality LaTeX.</p>
-<p>Not all of these features are currently implemented in <cite>prosecode</cite>.
-All of these features are implemented in one form or another by other tools.
-Cobbling these tools together resulted in lackluster results so I decided to write my own.</p>
+Moreover, the markdown files are converted into LaTeX.</p>
+<p><cite>prosecode</cite> was written primarily as a way to build the book <strong>A First Course on Data Structures in Python</strong>.
+This open source textbook can be found at <a class="reference external" href="https://donsheehy.github.io/datastructures/">https://donsheehy.github.io/datastructures/</a>.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -171,13 +169,15 @@ Cobbling these tools together resulted in lackluster results so I decided to wri
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#prosecode-tangle">prosecode tangle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#prosecode-weave">prosecode weave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#prosecode-cleanup">prosecode cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#prosecode-styledefs">prosecode styledefs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="latex.html">Building the LaTeX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="makefileusage.html">Using prosecode with make</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tables.html">Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 </ul>
-</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tables &mdash; prosecode 0.1.0 documentation</title>
+  <title>Building the LaTeX &mdash; prosecode 0.1.0 documentation</title>
   
 
   
@@ -35,7 +35,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Using prosecode with make" href="makefileusage.html" /> 
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Command Line Interface" href="cli.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,10 +85,10 @@
 <li class="toctree-l1"><a class="reference internal" href="problem.html">The Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="latex.html">Building the LaTeX</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Building the LaTeX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="makefileusage.html">Using prosecode with make</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Tables</a></li>
 </ul>
 
             
@@ -133,13 +134,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Tables</li>
+      <li>Building the LaTeX</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/tables.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/latex.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -152,10 +153,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="tables">
-<h1>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h1>
-<p>Currently markdown style tables are supported, but it’s a bit of a hack.
-Their conversion to LaTeX assumes they have only three columns.</p>
+  <div class="section" id="building-the-latex">
+<h1>Building the LaTeX<a class="headerlink" href="#building-the-latex" title="Permalink to this headline">¶</a></h1>
+<p>Prosecode attempts to build relatively minimal LaTeX.
+If you want to then build the produced LaTeX into a pdf, you would <cite>input</cite> the generated file into some other LaTeX source.
+For example, the following wraps <cite>file1</cite> and <cite>file2</cite> as chapters in a book.</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>book<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>amsmath,amsthm,amssymb<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>fancyvrb<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>etoolbox<span class="nb">}</span> <span class="c">% Only used for block quotes.</span>
+
+<span class="k">\input</span><span class="nb">{</span>pygments<span class="nb">_</span>macros<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+  <span class="k">\input</span><span class="nb">{</span>titlepage<span class="nb">}</span>
+  <span class="k">\tableofcontents</span>
+  <span class="k">\input</span><span class="nb">{</span>file1<span class="nb">}</span>
+  <span class="k">\input</span><span class="nb">{</span>file2<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -166,8 +185,10 @@ Their conversion to LaTeX assumes they have only three columns.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="makefileusage.html" class="btn btn-neutral float-left" title="Using prosecode with make" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="cli.html" class="btn btn-neutral float-left" title="Command Line Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
