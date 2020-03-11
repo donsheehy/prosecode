@@ -35,8 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Using prosecode with make" href="makefileusage.html" />
-    <link rel="prev" title="Building the LaTeX" href="latex.html" /> 
+    <link rel="prev" title="Tables" href="tables.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,9 +85,9 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="latex.html">Building the LaTeX</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="makefileusage.html">Using prosecode with make</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tables.html">Tables</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a></li>
 </ul>
 
             
@@ -155,8 +154,41 @@
             
   <div class="section" id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<p>Examples coming soon.
-.. Add some clear examples</p>
+<p>Consider the following simple markdown file, <cite>sample.md</cite>.</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span><span class="gh">#</span> Sample Markdown
+
+<span class="gu">##</span> Get excited!
+
+```python {cmd id=&quot;_itscode&quot;}
+x = 2
+print(x +3)
+```
+</pre></div>
+</div>
+<p>We can tangle out the code with the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prosecode</span> <span class="n">tangle</span> <span class="n">sample</span><span class="o">.</span><span class="n">md</span>
+</pre></div>
+</div>
+<p>This will produce a file called <cite>itscode.py</cite> that looks as follows.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, we can weave the code into proper LaTeX as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prosecode</span> <span class="n">weave</span> <span class="n">sample</span><span class="o">.</span><span class="n">md</span>
+</pre></div>
+</div>
+<p>This produces the file <cite>sample.tex</cite>.</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\chapter</span><span class="nb">{</span>Sample Markdown<span class="nb">}</span>
+
+<span class="k">\section</span><span class="nb">{</span>Get excited!<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>Verbatim<span class="nb">}</span>[commandchars=<span class="k">\\\{\}</span>]
+<span class="k">\PY</span><span class="nb">{</span>n<span class="nb">}{</span>x<span class="nb">}</span> <span class="k">\PY</span><span class="nb">{</span>o<span class="nb">}{</span>=<span class="nb">}</span> <span class="k">\PY</span><span class="nb">{</span>l+m+mi<span class="nb">}{</span>2<span class="nb">}</span>
+<span class="k">\PY</span><span class="nb">{</span>n+nb<span class="nb">}{</span>print<span class="nb">}</span><span class="k">\PY</span><span class="nb">{</span>p<span class="nb">}{</span>(<span class="nb">}</span><span class="k">\PY</span><span class="nb">{</span>n<span class="nb">}{</span>x<span class="nb">}</span> <span class="k">\PY</span><span class="nb">{</span>o<span class="nb">}{</span>+<span class="nb">}</span><span class="k">\PY</span><span class="nb">{</span>l+m+mi<span class="nb">}{</span>3<span class="nb">}</span><span class="k">\PY</span><span class="nb">{</span>p<span class="nb">}{</span>)<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>Verbatim<span class="nb">}</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -167,10 +199,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="makefileusage.html" class="btn btn-neutral float-right" title="Using prosecode with make" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="latex.html" class="btn btn-neutral float-left" title="Building the LaTeX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tables.html" class="btn btn-neutral float-left" title="Tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
