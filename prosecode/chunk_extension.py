@@ -60,15 +60,19 @@ class CodeChunkPreprocessor(Preprocessor):
                 placeholder = self.md.htmlStash.store(codehtml)
 
             output = ''
-            if self.execute and chunk.cmd and chunk.output != 'none':
+            if self.execute and chunk.cmd:
                 stdout, stderr = chunk.execute()
                 if len(stdout) + len(stderr) > 0:
                     if chunk.error_expected:
                         rawoutput = self._escape(stdout + '\n' + stderr)
                     else:
+                        if stderr:
+                            pass
+                            # This is where we would log any errors.
                         rawoutput = self._escape(stdout)
-                    chunkoutput = self._codehtml('verbatim', rawoutput)
-                    output = self.md.htmlStash.store(chunkoutput)
+                    if chunk.output != 'none':
+                        chunkoutput = self._codehtml('verbatim', rawoutput)
+                        output = self.md.htmlStash.store(chunkoutput)
 
             text = '{}\n{}\n{}\n{}'.format(text[:m.start()],
                                        placeholder,
