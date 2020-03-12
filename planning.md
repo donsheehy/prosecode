@@ -2,36 +2,50 @@
 
 ## Deal correctly with files
 
-Eliminate all uses of string concatenation for file paths.
-
-Move all file processing for weave to the CLI.
+- [ ] Move all file processing for weave to the CLI.
+- [ ] Eliminate all uses of string concatenation for file paths.
 
 ## Chunks
 
-Print the raw code of a chunk into a LaTeX comment.
+- [x] Print the raw code of a chunk into a LaTeX comment.
 
-Allow looser syntax for code chunk parameters.
-- [ ] Parse options with single quotes.
-- [ ] Be okay with some extra spaces around lang
+- [ ] Allow looser syntax for code chunk parameters.
+  - [ ] Parse options with single quotes.
+  - [ ] Be okay with some extra spaces around lang
 
-Correctly, handle generic continues in chunks.
+- [ ] Correctly, handle generic continues in chunks.
 
 ## Tables
 
-Correctly map tables to latex tabular environments.
+- [ ] Correctly map tables to latex tabular environments.
 
-## Test the Chunk code
+## Testing
 
-Make sure it handles hide and output options
-
-## Test the CLI
-
-Integrate `pyfakefs` into CLI tests.
+- [x] Use `pyfakefs` to test tangle.
+- [ ] Test that Chunk processing handles `hide` and `output` options.
+- [ ] Integrate `pyfakefs` into CLI tests.
 
 ## Add support for other languages similar to what is done with MPE
 
-Support for weaving other languages besides python.
+- [ ] Support for weaving other languages besides python.
+  - [ ] Test it with node and python to js book
 
-Support for tangling other languages besides python.
+- [ ] Support for tangling other languages besides python.
 
 ## LaTeX Diffs
+
+- [ ] Do an experiment to see how it works.
+
+## Log errors
+
+- [ ] Unexpected errors are written to stderr
+- [ ] Unexpected errors are logged
+
+
+## code coverage
+
+- [ ] The total code coverage is calculated and reported.
+
+## Integrated pytest testing
+
+- [ ] Working examples of pytest tests inline.
