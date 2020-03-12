@@ -24,8 +24,8 @@ class CodeChunkPreprocessor(Preprocessor):
 (?P<chunkoptions>\{.*?\})?[ ]*\n         # code chunk options
 (?P<code>.*?)
 (?<=\n)(?P=fence)[ ]*$''', re.MULTILINE | re.DOTALL | re.VERBOSE)
-    CODE_WRAP = '<pre><code%s>%s</code></pre>'
-    LANG_TAG = ' class="%s"'
+    CODE_WRAP = '<pre class="prettyprint"><code%s>%s</code></pre>'
+    LANG_TAG = ' class="lang-%s"'
     OUTPUT_CLASS = ' class="verbatim"'
 
     def __init__(self, md, chunks, execute):
@@ -85,7 +85,7 @@ class CodeChunkPreprocessor(Preprocessor):
         langhtml = self.LANG_TAG % lang if lang else ''
 
         codehtml = self.CODE_WRAP % (langhtml,
-                                    self._escape(code))
+                                    code)
         return codehtml
     def _escape(self, txt):
         """ basic html escaping """

@@ -32,23 +32,36 @@ def tangle(mdfile, srcdir):
 @click.option('--execute', default = False,
                 help='Should the code chunks be executed?')
 @click.option('--outfile', default = False, help='The file to save to.')
-def weave(mdfile, execute, outfile):
+@click.option('--format', default = 'latex', help='Output format `latex` or `html`.')
+def weave(mdfile, execute, outfile, format):
     """
     Process the markdown file `mdfile` into a LaTeX document.
 
     If `--execute` is set to `True`, then the blocks of code will be executed
     and their output placed in the text.
 
+    The `--format` option specifies the output format.  Valid options are
+    `latex` or `html`.
+
     The output file is specified in the `--outfile` field.  If omitted, it
     will simple change the extension on the input file from `.md` to `.tex`.
     """
     with open(mdfile, 'r') as f:
         md = f.read()
-    latex = prosecode.weave.latexweave(md, execute)
+    if format.lower() == 'latex':
+        woven = prosecode.weave.latexweave(md, execute)
+        extension = '.tex'
+    elif format.lower() == 'html':
+        woven = prosecode.weave.htmlweave(md, execute)
+        extension = '.html'
+    else:
+        click.echo('Only `html` and `latex` are valid --format options.')
+        return 1
+
     if outfile == False:
-        outfile = mdfile.replace('.md', '.tex')
-    with open(outfile, 'w') as latexfile:
-        latexfile.write(latex)
+        outfile = mdfile.replace('.md', extension)
+    with open(outfile, 'w') as f:
+        f.write(woven)
 
     click.echo('Wove the code.')
 
@@ -82,16 +95,3 @@ def cleanup(mdfile, srcdir):
         os.remove(filename)
 
     click.echo('Finished cleaning ' + mdfile + '.')
-
-
-# if __name__ == '__main__':
-#     mdfile = 'examples/smallweave.md'
-#     outfile = False
-#     execute = False
-#     md = open(mdfile, 'r').read()
-#     latex = prosecode.weave.latexweave(md, execute)
-#     if outfile == False:
-#         outfile = mdfile.replace('.md', '.tex')
-#     with open(outfile, 'w') as latexfile:
-#         latexfile.write(latex)
-#     print("Done.")

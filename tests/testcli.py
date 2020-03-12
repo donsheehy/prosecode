@@ -10,6 +10,7 @@ class TestCLI(unittest.TestCase):
         self.md2 = 'md2.md'
         self.md3 = 'md3.md'
         self.md3_tex = 'md3.tex'
+        self.md3_html = 'md3.html'
         self.srcdir = 'src/'
         self.itscode = self.srcdir + 'itscode.py'
         self.keepit = self.srcdir + 'keepit.py'
@@ -72,6 +73,20 @@ class TestCLI(unittest.TestCase):
             with open (self.md3_tex) as f:
                 self.assertEqual(EXPECTED_LATEX_MD3, f.read())
 
+    def testweavetohtml(self):
+        runner = CliRunner()
+        with runner.isolated_filesystem():
+            self._create_file(self.md3, MD3)
+
+            self.assertTrue(os.path.exists(self.md3))
+            result = runner.invoke(weave, [self.md3, '--format', 'html'])
+            self.assertTrue(os.path.exists(self.md3))
+            self.assertEqual(result.exit_code, 0)
+            self.assertTrue(os.path.exists(self.md3_html))
+            with open (self.md3_html) as f:
+                self.assertEqual(EXPECTED_HTML_MD3, f.read())
+
+
 MD1 = """
 # Sample Markdown
 
@@ -124,6 +139,13 @@ EXPECTED_LATEX_MD3 = """\
 \\]
 """
 
+EXPECTED_HTML_MD3 = """\
+<h1>H1</h1>
+<h2>H2</h2>
+<p>\\[
+    x = 1
+\\]</p>\
+"""
 
 
 if __name__ == '__main__':

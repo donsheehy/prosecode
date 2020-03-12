@@ -2,7 +2,7 @@
 
 ## Deal correctly with files
 
-- [ ] Move all file processing for weave to the CLI.
+- [x] Move all file processing for weave to the CLI.
 - [ ] Eliminate all uses of string concatenation for file paths.
 
 ## Chunks
@@ -21,9 +21,8 @@
 
 ## Testing
 
-- [x] Use `pyfakefs` to test tangle.
 - [ ] Test that Chunk processing handles `hide` and `output` options.
-- [ ] Integrate `pyfakefs` into CLI tests.
+- [x] Test the CLI without touching files.
 
 ## Add support for other languages similar to what is done with MPE
 
@@ -41,7 +40,6 @@
 - [ ] Unexpected errors are written to stderr
 - [ ] Unexpected errors are logged
 
-
 ## code coverage
 
 - [ ] The total code coverage is calculated and reported.
@@ -52,6 +50,7 @@
 
 ## Produce nice HTML
 
+- [ ] add a format option to weave to produce html instead
 - [ ] Add the prettify script to HTML.
   - `<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>`
 - [ ] Mark code as `<code class="prettyprint lang-python">` or just `<code class="prettyprint">`

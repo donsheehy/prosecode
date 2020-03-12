@@ -10,10 +10,11 @@ h_to_l = {
     'h3': '\\subsection{',
     'h4': '\\subsubsection{',
     'h5': '\\paragraph{',
-    'code.verbatim': '\\begin{Verbatim}\n',
-    'code.python': '',
+    'code.lang-verbatim': '\\begin{Verbatim}\n',
+    'code.lang-python': '',
     'code': '\\texttt{',
     'pre': '',
+    'pre.prettyprint': '',
     'p': '\n',
     'strong': '\\textbf{',
     'em': '\\emph{',
@@ -38,10 +39,11 @@ close_h_to_l = {
     'h3': '}\n',
     'h4': '}\n',
     'h5': '}\n',
-    'code.verbatim': '\n\\end{Verbatim}',
-    'code.python': '',
+    'code.lang-verbatim': '\n\\end{Verbatim}',
+    'code.lang-python': '',
     'code': '}',
     'pre': '',
+    'pre.prettyprint': '',
     'p': '\n',
     'strong': '}',
     'em': '}',
@@ -78,7 +80,7 @@ class HTMLtoLaTeX(HTMLParser):
         self.mystack.append(tag)
 
     def handle_endtag(self, tag):
-        if self.mystack[-1] in ['code.verbatim', 'code.python']:
+        if self.mystack[-1] in ['code.lang-verbatim', 'code.lang-python']:
             tag = self.mystack[-1]
         self.latex.append(close_h_to_l[tag])
         self.mystack.pop()
@@ -86,12 +88,12 @@ class HTMLtoLaTeX(HTMLParser):
     def handle_data(self, data):
         if self.mystack:
             tag = self.mystack[-1]
-            if tag == 'code.python':
+            if tag == 'code.lang-python':
                 data = (_codecomment(data) +
                         highlight(data, PythonLexer(), LatexFormatter()))
             elif tag == 'code':
                 data = _latexescape(data)
-            elif tag == 'code.verbatim':
+            elif tag == 'code.lang-verbatim':
                 data = _unescape(data)
 
         self.latex.append(data)
