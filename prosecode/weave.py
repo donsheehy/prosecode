@@ -4,29 +4,35 @@ from prosecode.htmltolatexparser import HTMLtoLaTeX
 from prosecode.chunk_extension import CodeChunkExtension
 from prosecode.displaymath_extension import DisplayMathExtension
 
-def htmlweave(mdfile, execute = True):
-    md = open(mdfile, 'r').read()
+def htmlweave(md, execute = False):
+    """
+    Produce HTML (as a string) from a string containing markdown.
+
+    If `executed` is set to True, then all code chunks in the file will be
+    executed.
+
+    By default the code will not be executed.
+    """
     displaymath = DisplayMathExtension()
     codechunks = CodeChunkExtension(execute = execute)
+
     html = markdown.markdown(md, extensions=[codechunks,
                                              displaymath,
                                              'tables',
                                              ])
+
     return html
 
-def latexweave(mdfile, execute = True, outfilename = None):
+def latexweave(md, execute = False):
     """
-    Produce a LaTeX file from a markdown file.
+    Produce LaTeX (as a string) from a string containing markdown.
 
-    All code chunks in the file will be executed.
+    If `executed` is set to True, then all code chunks in the file will be
+    executed.
+
+    By default the code will not be executed.
     """
-    if outfilename is None:
-        outfilename = mdfile.replace('.md', '.tex')
-
-    html = htmlweave(mdfile, execute)
-    latex = []
-    parser = HTMLtoLaTeX(latex)
+    parser = HTMLtoLaTeX()
+    html = htmlweave(md, execute)
     parser.feed(html)
-    with open(outfilename, 'w') as outfile:
-        for line in latex:
-            outfile.write(line)
+    return ''.join(parser.latex)

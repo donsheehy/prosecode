@@ -90,3 +90,9 @@ class Chunk:
 
     def __str__(self):
         return self.code
+
+    def __lt__(self, other):
+        """
+        Chunks are ordered by their ids.
+        """
+        return self.id < other.id

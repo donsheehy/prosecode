@@ -61,9 +61,9 @@ close_h_to_l = {
 }
 
 class HTMLtoLaTeX(HTMLParser):
-    def __init__(self, latex):
+    def __init__(self):
         super().__init__()
-        self.latex = latex
+        self.latex = []
         self.mystack = []
 
     def handle_starttag(self, tag, attrs):
