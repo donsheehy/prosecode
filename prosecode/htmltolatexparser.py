@@ -87,7 +87,8 @@ class HTMLtoLaTeX(HTMLParser):
         if self.mystack:
             tag = self.mystack[-1]
             if tag == 'code.python':
-                data = highlight(data, PythonLexer(), LatexFormatter())
+                data = (_codecomment(data) +
+                        highlight(data, PythonLexer(), LatexFormatter()))
             elif tag == 'code':
                 data = _latexescape(data)
             elif tag == 'code.verbatim':
@@ -100,6 +101,12 @@ def _latexescape(txt):
     txt = txt.replace('&', '\&')
     txt = txt.replace('^', '\\ensuremath{\\wedge}')
     return txt
+
+def _codecomment(txt):
+    output = []
+    for line in txt.split('\n'):
+        output.extend(['% ', line, '\n'])
+    return "".join(output)
 
 def _unescape(txt):
     txt = txt.replace('&amp;', '&')
