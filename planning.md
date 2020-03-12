@@ -1,4 +1,4 @@
-# Planning
+# prosecode Planning
 
 ## Deal correctly with files
 
@@ -49,3 +49,9 @@
 ## Integrated pytest testing
 
 - [ ] Working examples of pytest tests inline.
+
+## Produce nice HTML
+
+- [ ] Add the prettify script to HTML.
+  - `<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>`
+- [ ] Mark code as `<code class="prettyprint lang-python">` or just `<code class="prettyprint">`
