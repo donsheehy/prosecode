@@ -26,8 +26,8 @@ class TestWeave(unittest.TestCase):
         html = htmlweave(MD2, False)
         self.assertEqual(html, EXPECTED_HTML_MD2)
         html = htmlweave(MD2, True)
-        print(html)
-        # self.assertEqual(html, EXPECTED_HTML_MD2_EXECUTED)
+        # print(html)
+        self.assertEqual(html, EXPECTED_HTML_MD2_EXECUTED)
 
 MD1 = """\
 # H1
@@ -69,6 +69,13 @@ EXPECTED_HTML_MD2 = """\
 </code></pre>\
 """
 
+EXPECTED_HTML_MD2_EXECUTED = """\
+<p><pre class="prettyprint"><code class="lang-python">print('Hello, World!')
+</code></pre>
+<pre class="prettyprint"><code class="lang-verbatim">Hello, World!
+</code></pre></p>\
+"""
+
 EXPECTED_TEX_MD2 = """\
 % print('Hello, World!')
 % \n\\begin{Verbatim}[commandchars=\\\\\\{\\}]
@@ -86,6 +93,7 @@ Hello, World!
 
 \\end{Verbatim}
 """
+
 
 if __name__ == '__main__':
     unittest.main()

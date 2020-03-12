@@ -85,8 +85,9 @@ class CodeChunkPreprocessor(Preprocessor):
         langhtml = self.LANG_TAG % lang if lang else ''
 
         codehtml = self.CODE_WRAP % (langhtml,
-                                    code)
+                                    self._escape(code))
         return codehtml
+        
     def _escape(self, txt):
         """ basic html escaping """
         txt = txt.replace('&', '&amp;')
