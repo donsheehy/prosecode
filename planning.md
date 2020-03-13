@@ -23,6 +23,7 @@
 
 - [ ] Test that Chunk processing handles `hide` and `output` options.
 - [x] Test the CLI without touching files.
+- [ ] Test the html and latex escape corner cases.
 
 ## Add support for other languages similar to what is done with MPE
 

@@ -9,7 +9,7 @@ def cli():
     pass
 
 @cli.command()
-@click.argument('mdfile')
+@click.argument('mdfile', type = click.File('r'))
 @click.option('--srcdir', default = './',
                 help='Where to put the generated source code.')
 def tangle(mdfile, srcdir):
@@ -17,19 +17,18 @@ def tangle(mdfile, srcdir):
     Process the markdown file `mdfile`, extracting all code.
     The code is placed in the directory given in the option `--srcdir`.
     """
-    with open(mdfile, 'r') as f:
-        md = f.read()
+    md = mdfile.read()
     tangled = prosecode.tangle.tangle(md)
     for name, chunk in tangled.items():
         name = name.replace('.', '/')
         with open(srcdir + name + '.py', 'w') as outfile:
             outfile.write(chunk.fullstr())
 
-    click.echo('Tangled the code in ' + mdfile + ' to ' + srcdir + '.')
+    click.echo('Tangled the code to ' + srcdir + '.')
 
 @cli.command()
-@click.argument('mdfile')
-@click.option('--execute', default = False,
+@click.argument('mdfile', type = click.Path())
+@click.option('--execute/--noexecute', default = False,
                 help='Should the code chunks be executed?')
 @click.option('--outfile', default = False, help='The file to save to.')
 @click.option('--format', default = 'latex', help='Output format `latex` or `html`.')
