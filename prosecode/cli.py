@@ -31,10 +31,12 @@ def tangle(mdfile, srcdir):
 @click.option('--execute/--noexecute', default = False,
                 help='Should the code chunks be executed?')
 @click.option('--outfile', default = False, help='The file to save to.')
-@click.option('--format', default = 'latex', help='Output format `latex` or `html`.')
+@click.option('--format',
+                type=click.Choice(['latex', 'html'], case_sensitive=False),
+                default = 'latex', help='Output format `latex` or `html`.')
 def weave(mdfile, execute, outfile, format):
     """
-    Process the markdown file `mdfile` into a LaTeX document.
+    Process the markdown file `mdfile` into a LaTeX or HTML document.
 
     If `--execute` is set to `True`, then the blocks of code will be executed
     and their output placed in the text.
