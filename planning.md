@@ -1,5 +1,9 @@
 # prosecode Planning
 
+## Figure Output
+
+- the directory for figures should be an option to set.
+
 ## Deal correctly with files
 
 - [x] Move all file processing for weave to the CLI.
@@ -55,3 +59,4 @@
 - [ ] Add the prettify script to HTML.
   - `<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>`
 - [ ] Mark code as `<code class="prettyprint lang-python">` or just `<code class="prettyprint">`
+- [ ] Make sure figures also include correctly.
