@@ -158,9 +158,10 @@
 <p>For a large project with multiple files, it is recommended that you use make to manage the build.
 Here is an example <cite>Makefile</cite>.</p>
 <p>This assumes the markdown files are in a folder called <cite>prose/</cite>.
-The .tex files will be place din a folder called <cite>tex/</cite>.
+The .tex files will be placed in a folder called <cite>tex/</cite>.
 The code will be placed in a folder called <cite>package/</cite>.</p>
-<div class="highlight-basemake notranslate"><div class="highlight"><pre><span></span><span class="nv">MD</span><span class="o">:=</span> <span class="k">$(</span>wildcard prose/*.md<span class="k">)</span>
+<div class="highlight-basemake notranslate"><div class="highlight"><pre><span></span><span class="nv">SRCDIR</span> <span class="o">=</span> mypackage/
+<span class="nv">MD</span><span class="o">:=</span> <span class="k">$(</span>wildcard prose/*.md<span class="k">)</span>
 <span class="nv">TEX</span><span class="o">:=</span> <span class="k">$(</span>MD:prose/%.md<span class="o">=</span>tex/%.tex<span class="k">)</span>
 
 <span class="nf">.PHONY</span><span class="o">:</span> <span class="n">help</span> <span class="n">Makefile</span> <span class="n">pdf</span> <span class="n">clean</span> <span class="n">weave</span>
@@ -169,11 +170,11 @@ The code will be placed in a folder called <cite>package/</cite>.</p>
       prosecode styledefs --outfile tex/pygments_macros.tex
 
 <span class="nf">tex/%.tex</span><span class="o">:</span> <span class="n">prose</span>/%.<span class="n">md</span>
-      prosecode tangle $&lt; --srcdir package/
+      prosecode tangle $&lt; --srcdir <span class="k">$(</span>SRCDIR<span class="k">)</span>
       prosecode weave $&lt; --outfile <span class="nv">$@</span> --execute True
 
 <span class="nf">clean</span><span class="o">:</span>
-  <span class="k">$(</span>foreach mdfile, <span class="k">$(</span>MD<span class="k">)</span>, prosecode cleanup <span class="k">$(</span>mdfile<span class="k">)</span> --srcdir package/<span class="p">;</span><span class="k">)</span>
+  <span class="k">$(</span>foreach mdfile, <span class="k">$(</span>MD<span class="k">)</span>, prosecode cleanup <span class="k">$(</span>mdfile<span class="k">)</span> --srcdir <span class="k">$(</span>SRCDIR<span class="k">)</span><span class="p">;</span><span class="k">)</span>
 
 <span class="nf">weave</span><span class="o">:</span> <span class="k">$(</span><span class="nv">TEX</span><span class="k">)</span>
 

@@ -5,7 +5,6 @@
 *.synctex.gz
 *.fdb_latexmk
 *.aux
-*.pdf
 xexamples/src/
 
 # Mac stuff
