@@ -70,7 +70,11 @@ class CodeChunkPreprocessor(Preprocessor):
                             pass
                             # This is where we would log any errors.
                         rawoutput = self._escape(stdout)
-                    if chunk.output != 'none':
+                    if chunk.figure:
+                        imgfilename = chunk.id.replace('.', '/') + '.svg'
+                        chunkoutput = '<img src=\"{}\"></img>'.format(imgfilename)
+                        output = self.md.htmlStash.store(chunkoutput)
+                    elif chunk.output != 'none':
                         chunkoutput = self._codehtml('verbatim', rawoutput)
                         output = self.md.htmlStash.store(chunkoutput)
 
@@ -87,7 +91,7 @@ class CodeChunkPreprocessor(Preprocessor):
         codehtml = self.CODE_WRAP % (langhtml,
                                     self._escape(code))
         return codehtml
-        
+
     def _escape(self, txt):
         """ basic html escaping """
         txt = txt.replace('&', '&amp;')

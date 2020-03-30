@@ -24,7 +24,7 @@ h_to_l = {
     'ul': '\\begin{itemize}\n',
     'li': '\\item ',
     'blockquote': '\\begin{quote}',
-    'img': '\\includegraphics[width=\\textwidth]{',
+    'img': '\\includegraphics[width=\\textwidth]{./',
     'table': '\\begin{tabular}{c c c c}\n',
     'thead': '\\hline\n',
     'th': '',
@@ -75,7 +75,8 @@ class HTMLtoLaTeX(HTMLParser):
         self.latex.append(h_to_l[tag])
         if tag == 'img':
             # print("image:", tag, attrs)
-            self.latex.append(attrs['src'])
+            filename = attrs['src'].replace('.svg', '.pdf')
+            self.latex.append(filename)
             self.latex.append('}')
         self.mystack.append(tag)
 
