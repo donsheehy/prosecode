@@ -16,8 +16,10 @@ No extension should be used in the id.
 Step 5 is handled by the html to latex parser.
 It finds the html image tag and builds a corresponding `includegraphics` command, changing the filename from an `.svg` extension to `.pdf`.
 
+**Note: This requires pip installing dsviz**
+
 ```python {cmd figure id="figures.testfigure" output="html"}
-from ds_viz.canvas import svg_plus_pdf
+from dsviz.canvas import svg_plus_pdf
 
 with svg_plus_pdf(600, 480, 'figures/testfigure') as c:
     c.point((30,30), 'ps')
@@ -30,8 +32,8 @@ with svg_plus_pdf(600, 480, 'figures/testfigure') as c:
 ```
 
 ```python {cmd figure id="figures.list01" output="html"}
-from ds_viz.canvas import svg_plus_pdf
-from ds_viz.datastructures import VizList
+from dsviz.canvas import svg_plus_pdf
+from dsviz.datastructures import VizList
 
 with svg_plus_pdf(600, 480, 'figures/list01') as canvas:
     VizList([1,2,3, 'a string', '0']).draw(canvas)
