@@ -3,8 +3,9 @@ from prosecode.tangle import tangle
 from prosecode.htmltolatexparser import HTMLtoLaTeX
 from prosecode.chunk_extension import CodeChunkExtension
 from prosecode.displaymath_extension import DisplayMathExtension
+import os.path
 
-def htmlweave(md, execute = False, executepath = ''):
+def htmlweave(md, execute = False, executepath = os.path.curdir):
     """
     Produce HTML (as a string) from a string containing markdown.
 
@@ -24,7 +25,7 @@ def htmlweave(md, execute = False, executepath = ''):
 
     return html
 
-def latexweave(md, execute = False, executepath = ''):
+def latexweave(md, execute = False, executepath = os.path.curdir):
     """
     Produce LaTeX (as a string) from a string containing markdown.
 
