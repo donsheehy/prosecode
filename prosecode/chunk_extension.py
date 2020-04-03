@@ -5,16 +5,18 @@ import re
 
 class CodeChunkExtension(Extension):
 
-    def __init__(self, execute = False):
+    def __init__(self, execute = False, executepath = ''):
         super().__init__()
         self.execute = execute
+        self.executepath = executepath
         self.chunks = {}
 
     def extendMarkdown(self, md):
         """ Add CodeChunkPreprocessor to the Markdown instance. """
         md.registerExtension(self)
 
-        preprocessor = CodeChunkPreprocessor(md, self.chunks, self.execute)
+        preprocessor = CodeChunkPreprocessor(md, self.chunks, self.execute,
+                                             self.executepath)
         md.preprocessors.register(preprocessor, 'code_chunk', 26)
 
 class CodeChunkPreprocessor(Preprocessor):
@@ -28,10 +30,11 @@ class CodeChunkPreprocessor(Preprocessor):
     LANG_TAG = ' class="lang-%s"'
     OUTPUT_CLASS = ' class="verbatim"'
 
-    def __init__(self, md, chunks, execute):
+    def __init__(self, md, chunks, execute, executepath = ''):
         super().__init__(md)
         self.chunks = chunks
         self.execute = execute
+        self.executepath = executepath
 
     def run(self, lines):
         """ Match code chunks and store them in the HtmlStash. """
@@ -61,7 +64,7 @@ class CodeChunkPreprocessor(Preprocessor):
 
             output = ''
             if self.execute and chunk.cmd:
-                stdout, stderr = chunk.execute()
+                stdout, stderr = chunk.execute(self.executepath)
                 if len(stdout) + len(stderr) > 0:
                     if chunk.error_expected:
                         rawoutput = self._escape(stdout + '\n' + stderr)

@@ -2,6 +2,7 @@ import re
 import random
 import string
 import subprocess
+import os.path
 
 def random_id():
     alphabet = 'abcdefghijklmnopqrstuvwxyz123456789'
@@ -56,7 +57,7 @@ class Chunk:
             self.id = random_id()
         namestart = 1 if self.id[0] == '_' else 0
 
-        nameend = -3if self.id[-3] == '_' else None
+        nameend = -3 if self.id[-3] == '_' else None
         self.name = self.id[namestart : nameend]
 
     def setcontinue(self, chunk):
@@ -77,15 +78,18 @@ class Chunk:
         else:
             return "\n".join([self.cont.fullstr(), str(self)])
 
-    def execute(self):
+    def execute(self, executepath = ''):
         filename = self.id
-        with open(filename, 'w') as outfile:
+        fullfilename = os.path.join(executepath, filename)
+        with open(fullfilename, 'w') as outfile:
             outfile.write(self.fullstr())
         # TODO: possibly change the lang to cmd
         process = subprocess.run([self.lang, filename],
-                                  stdout=subprocess.PIPE,
-                                  stderr=subprocess.PIPE)
+                                  cwd = executepath,
+                                  stdout = subprocess.PIPE,
+                                  stderr = subprocess.PIPE)
         subprocess.run(['rm', filename],
+                        cwd = executepath,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
         return process.stdout.decode(), process.stderr.decode()

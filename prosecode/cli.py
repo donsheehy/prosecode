@@ -30,11 +30,13 @@ def tangle(mdfile, srcdir):
 @click.argument('mdfile', type = click.Path())
 @click.option('--execute/--noexecute', default = False,
                 help='Should the code chunks be executed?')
+@click.option('--executepath', default = '', type = click.Path(),
+                help='Where should the code chunks be executed?')
 @click.option('--outfile', default = False, help='The file to save to.')
 @click.option('--format',
                 type=click.Choice(['latex', 'html'], case_sensitive=False),
                 default = 'latex', help='Output format `latex` or `html`.')
-def weave(mdfile, execute, outfile, format):
+def weave(mdfile, execute, executepath, outfile, format):
     """
     Process the markdown file `mdfile` into a LaTeX or HTML document.
 
@@ -47,13 +49,16 @@ def weave(mdfile, execute, outfile, format):
     The output file is specified in the `--outfile` field.  If omitted, it
     will simple change the extension on the input file from `.md` to `.tex`.
     """
+    if executepath == '':
+        executepath = os.path.dirname(mdfile)
+    click.echo('Set the execute path to: ' + str(executepath))
     with open(mdfile, 'r') as f:
         md = f.read()
     if format.lower() == 'latex':
-        woven = prosecode.weave.latexweave(md, execute)
+        woven = prosecode.weave.latexweave(md, execute, executepath)
         extension = '.tex'
     elif format.lower() == 'html':
-        woven = prosecode.weave.htmlweave(md, execute)
+        woven = prosecode.weave.htmlweave(md, execute, executepath)
         extension = '.html'
     else:
         click.echo('Only `html` and `latex` are valid --format options.')

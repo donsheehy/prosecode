@@ -21,7 +21,6 @@ class TestWeave(unittest.TestCase):
         latex = latexweave(MD2, True)
         self.assertEqual(latex, EXPECTED_TEX_MD2_EXECUTED)
 
-
     def testhtmlweave_withcode(self):
         html = htmlweave(MD2, False)
         self.assertEqual(html, EXPECTED_HTML_MD2)
