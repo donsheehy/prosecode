@@ -186,7 +186,7 @@ The code is placed in the directory given in the option <cite>–srcdir</cite>.<
 </div>
 <div class="section" id="prosecode-weave">
 <h2>prosecode weave<a class="headerlink" href="#prosecode-weave" title="Permalink to this headline">¶</a></h2>
-<p>Process the markdown file <cite>mdfile</cite> into a LaTeX document.</p>
+<p>Process the markdown file <cite>mdfile</cite> into a LaTeX or HTML document.</p>
 <p>If <cite>–execute</cite> is set to <cite>True</cite>, then the blocks of code will be executed
 and their output placed in the text.</p>
 <p>The <cite>–format</cite> option specifies the output format.  Valid options are
@@ -201,6 +201,12 @@ will simple change the extension on the input file from <cite>.md</cite> to <cit
 <dt id="cmdoption-prosecode-weave-execute">
 <code class="sig-name descname">--execute</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--noexecute</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-prosecode-weave-execute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Should the code chunks be executed?</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-prosecode-weave-executepath">
+<code class="sig-name descname">--executepath</code><code class="sig-prename descclassname"> &lt;executepath&gt;</code><a class="headerlink" href="#cmdoption-prosecode-weave-executepath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where should the code chunks be executed?</p>
 </dd></dl>
 
 <dl class="option">

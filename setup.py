@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="prosecode",
-    version="0.1.0",
+    version="0.2.0",
     author="Donald R. Sheehy",
     author_email="don.r.sheehy@gmail.com",
     description="Literate programming in Python from markdown to LaTeX.",

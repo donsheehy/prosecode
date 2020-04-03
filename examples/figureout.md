@@ -22,9 +22,9 @@ It finds the html image tag and builds a corresponding `includegraphics` command
 from dsviz.canvas import svg_plus_pdf
 
 with svg_plus_pdf(600, 480, 'figures/testfigure') as c:
-    c.point((30,30), 'ps')
-    c.point((50,30), 'doublepoint')
-    c.circle((100,100), 40, 'stark')
+    c.point((30,30), '_point')
+    c.point((50,30), '_point')
+    c.circle((100,100), 40, '_polygon')
     c.rectangle((250,20), 100, 200)
     c.line((100,200), (300, 150))
     c.text('hello', (140, 300))

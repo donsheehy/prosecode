@@ -1,5 +1,16 @@
 # prosecode Planning
 
+## tangle from multiple markdown files
+
+This is regularly an issue when you want to extend a class in another section that is written in another file.
+The most obvious case is where a whole section is devoted to the implementation, correctness, and analysis of a single method on a data structure.
+
+## Makefile conventions
+
+It makes sense to have the **prose** directory and the **code** directory.
+These should be specified in the makefile.
+It might also make sense to name the CLI options based on these terms.
+
 ## Figure Output
 
 - the directory for figures should be an option to set.
