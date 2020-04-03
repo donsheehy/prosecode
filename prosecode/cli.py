@@ -51,7 +51,6 @@ def weave(mdfile, execute, executepath, outfile, format):
     """
     if executepath == '':
         executepath = os.path.dirname(mdfile)
-    click.echo('Set the execute path to: ' + str(executepath))
     with open(mdfile, 'r') as f:
         md = f.read()
     if format.lower() == 'latex':
